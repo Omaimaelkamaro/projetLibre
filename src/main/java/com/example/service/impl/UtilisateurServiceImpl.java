@@ -70,7 +70,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return obtenirTousLesUtilisateurs(); // Call the existing method
     }
 
-    // Helper method to map UtilisateurDto to Utilisateur entity
+    
     private Utilisateur mapToEntity(UtilisateurDto utilisateurDto) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setEmail(utilisateurDto.getEmail());
