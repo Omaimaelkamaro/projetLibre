@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="Analyse_Table")
 public class Analyse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
