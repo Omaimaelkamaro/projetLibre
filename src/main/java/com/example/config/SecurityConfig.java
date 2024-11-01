@@ -3,6 +3,7 @@ package com.example.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.HttpFirewall;
@@ -29,12 +30,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS with configuration
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/utilisateurs").permitAll() // Allow access to this endpoint
-                        .anyRequest().authenticated() // Requires authentication for other requests
-                )
-                .httpBasic(withDefaults -> {}); // Enable basic authentication
+            .cors() // Enable CORS
+            .and()
+            .authorizeHttpRequests() // Update to use authorizeHttpRequests()
+            .requestMatchers("/api/utilisateurs").permitAll() // Allow access to this endpoint
+            .anyRequest().authenticated() // Requires authentication for other requests
+            .and()
+            .httpBasic(); // Enable basic authentication
         return http.build(); // Build the SecurityFilterChain
     }
 
@@ -45,10 +47,15 @@ public class SecurityConfig {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
-
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Apply CORS to all requests
-
+        source.registerCorsConfiguration("/", configuration); // Apply CORS to all requests
+        
         return source;
+    }
+
+    // Optional: Configure web security if needed
+    public void configure(WebSecurity web) {
+        web.ignoring().requestMatchers("/resources/", "/static/", "/public/", "/css/", "/js/", "/images/");
     }
 }
