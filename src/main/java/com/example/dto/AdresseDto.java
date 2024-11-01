@@ -1,13 +1,8 @@
-package com.example.entities;
-import jakarta.persistence.*;
+package com.example.dto;
 
-@Entity
-@Table(name="Adresse")
-public class Adresse {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class AdresseDto {
     private int id;
-
     private String numVoie;
     private String nomVoie;
     private String codePostal;
@@ -49,18 +44,20 @@ public class Adresse {
 	public void setCommune(String commune) {
 		this.commune = commune;
 	}
-	public Adresse(String numVoie, String nomVoie, String codePostal, String ville, String commune) {
+	public AdresseDto(int id, String numVoie, String nomVoie, String codePostal, String ville, String commune) {
 		super();
+		this.id = id;
 		this.numVoie = numVoie;
 		this.nomVoie = nomVoie;
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.commune = commune;
 	}
-	public Adresse() {
+	public AdresseDto() {
 		super();
 	}
 
-    
+    // Getters and setters
+    // Constructor(s)
     
 }
