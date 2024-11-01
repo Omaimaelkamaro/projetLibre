@@ -50,6 +50,7 @@ public class SecurityConfig {
         
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration); // Apply CORS to all requests
+        
         return source;
     }
 
