@@ -2,8 +2,9 @@ package com.example.entities;
 import jakarta.persistence.*;
 
 import jakarta.persistence.Entity;
-
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 @Entity
+@Table(name = "utilisateur")
 public class Utilisateur {
     @Id
     private String email;
