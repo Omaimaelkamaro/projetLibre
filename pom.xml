@@ -15,8 +15,10 @@
     <name>projetLibre</name>
     <description>Demo project for Spring Boot</description>
     <properties>
+        <sonar.host.url>http://votre-instance-sonarqube</sonar.host.url>
         <java.version>17</java.version>
     </properties>
+
 
     <dependencies>
         <dependency>
