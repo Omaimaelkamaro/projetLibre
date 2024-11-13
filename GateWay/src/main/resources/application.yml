@@ -1,22 +1,31 @@
-server:
-  port: 8080
-
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
       routes:
-        - id: user-service
-          uri: lb://user-service
+        - id: Utilisateurs
+          uri: lb://Utilisateurs
           predicates:
-            - Path=/api/users/**
-        - id: analysis-service
-          uri: lb://analysis-service
-          predicates:
-            - Path=/api/analyses/**
-    eureka:
-      client:
-        service-url:
-          defaultZone: http://localhost:8761/eureka
+            - Path=/Utilisateurs
+          filters:
+            - AuthenticationFilter
+
+
+#        - id: restaurant-service
+#          uri: lb://RESTAURANT-SERVICE
+#          predicates:
+#            - Path=/restaurant/**
+#          filters:
+#            - AuthenticationFilter
+#
+#        - id: identity-service
+#          uri: lb://IDENTITY-SERVICE
+#          predicates:
+#            - Path=/auth/**
+
+  application:
+    name: GATEWAY
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
