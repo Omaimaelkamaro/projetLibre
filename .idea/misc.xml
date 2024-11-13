@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/user/pom.xml" />
         <option value="$PROJECT_DIR$/userAuthentification/pom.xml" />
+        <option value="$PROJECT_DIR$/utilisateur/pom.xml" />
       </list>
     </option>
   </component>
