@@ -5,7 +5,7 @@ spring:
         - id: Utilisateurs
           uri: lb://Utilisateurs
           predicates:
-            - Path=/Utilisateurs
+            - Path=/api/utilisateurs
           filters:
             - AuthenticationFilter
 
