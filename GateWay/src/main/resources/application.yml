@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+        - id: analysis-service
+          uri: lb://analysis-service
+          predicates:
+            - Path=/api/analyses/**
+    eureka:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka

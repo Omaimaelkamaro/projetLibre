@@ -1,14 +1,11 @@
-eureka:
-  instance:
-    hostname: localhost
-    client:
-      service-url:
-        defaultZone: http://localhost:8761/eureka/
-
-
 server:
-  port: 8761
+  port: 8761  # Port for the Eureka Server
 
-spring:
-  config:
-    import: optional:configserver:http://localhost:8888
+eureka:
+  client:
+    registerWithEureka: false  # Do not register this server with another Eureka server
+    fetchRegistry: false       # Do not fetch the registry from another Eureka server
+  server:
+    enableSelfPreservation: false  # Disable self-preservation (useful for testing, not recommended in production)
+    # Set a lower lease expiration time to avoid long delays in unregistering stale instances
+    evictionIntervalTimerInMs: 5000  # Optional, to configure the eviction interval for expired instances
