@@ -1,15 +1,14 @@
-# Start from a base Java image
+# Démarrer à partir d'une image Java de base
 FROM openjdk:17-jdk-slim
 
-# Set the working directory
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copy the JAR file built by Maven into the container
-COPY target/GateWay-image.jar /app/GateWay-image.jar
+# Copier le fichier JAR construit par Maven dans le conteneur
+COPY ./GateWay/target/GateWay-image.jar /app/GateWay-image.jar
 
-
-# Expose the port that the microservice will use
+# Exposer le port que le microservice utilisera
 EXPOSE 8080
 
-# Set the command to run the JAR file
+# Définir la commande pour exécuter le fichier JAR
 ENTRYPOINT ["java", "-jar", "/app/GateWay-image.jar"]
