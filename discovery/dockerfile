@@ -1,15 +1,8 @@
-# Démarrer à partir d'une image Java de base
 FROM openjdk:17-jdk-slim
 
-# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le fichier JAR construit par Maven dans le conteneur
+# Copy the JAR file from the target directory after Maven build
 COPY ./target/discovery-0.0.1.SNAPSHOT.jar /app/discovery-0.0.1.SNAPSHOT.jar
 
-
-# Exposer le port que le microservice utilisera
-EXPOSE 8761
-
-# Définir la commande pour exécuter le fichier JAR
-ENTRYPOINT ["java", "-jar", "/app/GateWay-image.jar"]
+CMD ["java", "-jar", "/app/discovery-0.0.1.SNAPSHOT.jar"]
