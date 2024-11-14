@@ -32,5 +32,3 @@ public class JwtAuthenticationResponse {
         this.password = password;
     }
 }
-
-
