@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2021.0.5</spring-cloud.version> <!-- Assurez-vous que cette version est compatible avec Spring Boot 3.x -->
+		<spring-cloud.version>2023.0.1</spring-cloud.version> <!-- Use compatible version -->
 	</properties>
 
 	<dependencies>
