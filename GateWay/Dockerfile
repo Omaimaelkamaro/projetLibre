@@ -1,16 +1,14 @@
-# Use a base image with JDK installed
-FROM openjdk:17-jdk-alpine
+# Start from a base Java image
+FROM openjdk:17-jdk-slim
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
 # Copy the JAR file built by Maven into the container
-COPY target/GateWay-image.jar
+COPY target/GateWay-image.jar /app/GateWay-image.jar
 
 # Expose the port that the microservice will use
-EXPOSE 8081  # Change the port as per each microservice configuration
+EXPOSE 8080
 
-# Define the command to run the application
-CMD ["java", "-jar", "GateWay-image.jar"]
-
-
+# Set the command to run the JAR file
+ENTRYPOINT ["java", "-jar", "/app/GateWay-image.jar"]
