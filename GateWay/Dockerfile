@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file built by Maven into the container
-COPY target/GateWay-image.jar /app/GateWay-image.jar
+COPY GateWay/target/GateWay-image.jar /app/GateWay-image.jar
 
 # Expose the port that the microservice will use
 EXPOSE 8080
