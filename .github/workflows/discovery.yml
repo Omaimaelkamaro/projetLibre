@@ -36,7 +36,7 @@ jobs:
       - name: List files in target directory  # Check if the JAR file is created
         run: ls -al ./discovery/target  # List the files in the target directory to verify JAR creation
 
-      - name: Build Docker Image for Gateway
+      - name: Build Docker Image for discovery
         working-directory: ./discovery  # Go to the GateWay folder
         run: docker build -t my-docker-image-name:latest .  # Build the Docker image
         
