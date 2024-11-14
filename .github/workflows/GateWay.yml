@@ -27,10 +27,10 @@ jobs:
         working-directory: ./GateWay  # Go to the GateWay folder where the Maven project is located
         run: ./mvnw clean package -DskipTests  # Build the JAR with Maven (skip tests for faster build)
         
-      - name: Log in to DockerHub
+      - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKER_USERNAME }}  # Set up DOCKER_USERNAME in GitHub secrets
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: List files in target directory  # Check if the JAR file is created
