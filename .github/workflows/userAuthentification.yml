@@ -21,7 +21,7 @@ jobs:
           --health-timeout=5s
           --health-retries=5
         env:
-          POSTGRES_DB: projetlibre
+          POSTGRES_DB: userAuthentification
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 0600509081
 
@@ -44,7 +44,7 @@ jobs:
       - name: Build with Maven
         working-directory: ./userAuthentification
         env:
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/projetlibre
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/userAuthentification
           SPRING_DATASOURCE_USERNAME: postgres
           SPRING_DATASOURCE_PASSWORD: 0600509081
         run: ./mvnw -B package
