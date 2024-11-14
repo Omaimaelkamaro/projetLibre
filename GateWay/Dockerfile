@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copier le fichier JAR construit par Maven dans le conteneur
-COPY ./GateWay-0.0.1-SNAPSHOT.jar /app/GateWay-image.jar
+COPY ./target/GateWay-0.0.1-SNAPSHOT.jar /app/GateWay-image.jar
 
 
 # Exposer le port que le microservice utilisera
