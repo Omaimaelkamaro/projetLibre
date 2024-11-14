@@ -38,7 +38,7 @@ jobs:
       # Build and Push Docker Image for Gateway
       - name: Build Docker Image for Gateway
         working-directory: ./GateWay
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/GateWay-service:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest .
 
       - name: Push Docker Image for Gateway
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/GateWay-service:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest
