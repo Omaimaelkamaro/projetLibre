@@ -23,10 +23,10 @@ jobs:
       - name: Grant execute permission for Maven wrapper
         run: chmod +x ./GateWay/mvnw
 
+       # Step to build the JAR file
       - name: Build with Maven
         working-directory: ./GateWay
-        run: ./mvnw -B package
-
+        run: ./mvnw clean package -DskipTests
 
       # Step to build the Docker image
       - name: Build Docker Image for Gateway
@@ -39,3 +39,4 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+Explanation of Workflow Steps
