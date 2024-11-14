@@ -27,10 +27,13 @@ public class UserService {
 
     public String save(User user) {
         userRepository.save(user);
-        return "user added to the system";
+        String token = jwtService.generateToken(user.getUsername());
+
+        return token;
     }
     public String generateToken(String username) {
         return jwtService.generateToken(username);
+
     }
 
     public Optional<User> findByUsername(String username) {
