@@ -11,32 +11,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up JDK 17
+      - uses: actions/checkout@v4  # Récupérer le code source
+
+      - name: Set up JDK 17  # Installer JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
 
-      - name: Grant execute permission for Maven wrapper
+      - name: Grant execute permission for Maven wrapper  # Donner les droits d'exécution au wrapper Maven
         run: chmod +x ./GateWay/mvnw
 
-       # Step to build the JAR file
+      # Étape pour construire le fichier JAR avec Maven
       - name: Build with Maven
-        working-directory: ./GateWay
-        run: ./mvnw clean package -DskipTests
+        working-directory: ./GateWay  # Définir le répertoire de travail à ./GateWay
+        run: ./mvnw clean package -DskipTests  # Créer le fichier JAR
 
-      # Step to build the Docker image
+      # Étape pour construire l'image Docker
       - name: Build Docker Image for Gateway
-        working-directory: ./GateWay
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest .
+        working-directory: ./GateWay  # Définir le répertoire de travail à ./GateWay
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest .  # Construire l'image Docker
 
-      # Step to push the Docker image to Docker Hub
+      # Étape pour pousser l'image Docker vers Docker Hub
       - name: Push Docker Image for Gateway
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  # Authentification avec Docker Hub
