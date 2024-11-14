@@ -1,0 +1,50 @@
+name: userauthentification CI/CD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+        env:
+          POSTGRES_DB: projetlibre
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 0600509081
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Grant execute permission for Maven wrapper
+        run: chmod +x ./userAuthentification/mvnw
+
+      - name: Wait for PostgreSQL to be ready
+        run: until pg_isready -h localhost -p 5432 -U postgres; do echo "Waiting for postgres..."; sleep 5; done
+
+      - name: Build with Maven
+        working-directory: ./userAuthentification
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/projetlibre
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: 0600509081
+        run: ./mvnw -B package
