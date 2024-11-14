@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4  # Récupérer le code source
-
+      - uses: actions/checkout@v4  # Récupérer le code source du dépôt
       - name: Set up JDK 17  # Installer JDK 17
         uses: actions/setup-java@v4
         with:
@@ -20,22 +19,23 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Grant execute permission for Maven wrapper  # Donner les droits d'exécution au wrapper Maven
-        run: chmod +x ./GateWay/mvnw
+      - name: Grant execute permission for Maven wrapper
+        run: chmod +x ./GateWay/mvnw  # S'assurer que le wrapper Maven est exécutable
 
-      # Étape pour construire le fichier JAR avec Maven
       - name: Build with Maven
-        working-directory: ./GateWay  # Définir le répertoire de travail à ./GateWay
-        run: ./mvnw clean package -DskipTests  # Créer le fichier JAR
+        working-directory: ./GateWay  # Accéder au répertoire GateWay
+        run: ./mvnw clean package -DskipTests  # Générer le fichier JAR
 
-      # Étape pour construire l'image Docker
+      - name: List files in target directory  # Vérifier la présence du fichier JAR
+        run: ls -al ./GateWay/target  # Lister le contenu de target pour vérifier que le fichier est généré
+
       - name: Build Docker Image for Gateway
-        working-directory: ./GateWay  # Définir le répertoire de travail à ./GateWay
+        working-directory: ./GateWay
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest .  # Construire l'image Docker
 
-      # Étape pour pousser l'image Docker vers Docker Hub
       - name: Push Docker Image for Gateway
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest  # Pousser l'image sur Docker Hub
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  # Authentification avec Docker Hub
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
