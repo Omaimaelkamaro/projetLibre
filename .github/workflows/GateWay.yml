@@ -24,4 +24,5 @@ jobs:
         run: chmod +x ./GateWay/mvnw
 
       - name: Build with Maven
-        run: ./GateWay/mvnw -B package
+        working-directory: ./GateWay
+        run: ./mvnw -B package
