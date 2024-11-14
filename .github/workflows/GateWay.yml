@@ -28,17 +28,14 @@ jobs:
         run: ./mvnw -B package
 
 
-        # Log in to Docker Hub
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      # Build and Push Docker Image for Gateway
+      # Step to build the Docker image
       - name: Build Docker Image for Gateway
         working-directory: ./GateWay
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest .
 
+      # Step to push the Docker image to Docker Hub
       - name: Push Docker Image for Gateway
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gateway-service:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
