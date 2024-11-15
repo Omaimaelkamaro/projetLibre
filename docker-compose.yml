@@ -36,7 +36,7 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${{ secrets.POSTGRES_DB }}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${ secrets.POSTGRES_DB }}
       - SPRING_DATASOURCE_USERNAME= ${{ secrets.POSTGRES_USERNAME }}
       - SPRING_DATASOURCE_PASSWORD= ${{ secrets.POSTGRES_PASSWORD }}
 
@@ -48,10 +48,10 @@ services:
     networks:
       - app-network
     environment:
-  POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-  POSTGRES_USER: ${{ secrets.POSTGRES_USERNAME }}
-  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-  volumes:
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USERNAME }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+    volumes:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
