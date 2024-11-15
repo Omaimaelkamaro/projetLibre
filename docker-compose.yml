@@ -1,0 +1,19 @@
+version: '3'
+services:
+  GateWay:
+    image: salmachamam/my-docker-image-name:latest
+    ports:
+      - "8081:8081"
+    depends_on:
+      - discovery
+      - userAuthentification
+
+  discovery:
+    image: salmachamam/my-discovery-image:latest
+    ports:
+      - "8761:8761"
+
+  userAuthentification:
+    image: salmachamam/userauthentification-image:latest
+    ports:
+      - "9898:9898"
