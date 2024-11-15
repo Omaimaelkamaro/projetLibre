@@ -59,7 +59,7 @@ jobs:
       - name: List files in target directory  # Check if the JAR file is created
         run: ls -al ./userAuthentification/target  # List the files in the target directory to verify JAR creation
 
-      - name: Build Docker Image for userAuthentification
+      - name: Build Docker Image for userauthentification
         working-directory: ./userAuthentification  # Go to the GateWay folder
         run: docker build -t salmachamam/userauthentification-image:latest .
 
