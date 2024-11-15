@@ -61,12 +61,12 @@ jobs:
 
       - name: Build Docker Image for userAuthentification
         working-directory: ./userAuthentification  # Go to the GateWay folder
-        run: docker build -t salmachamam/userAuthentification-image:latest .
+        run: docker build -t salmachamam/userauthentification-image:latest .
 
         
       - name: Push Docker Image
         run: |
-         docker push salmachamam/userAuthentification-image:latest
+         docker push salmachamam/userauthentification-image:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
