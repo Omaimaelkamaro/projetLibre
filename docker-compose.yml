@@ -1,0 +1,59 @@
+services:
+  gateway:
+    image: salmachamam/my-docker-image-name:latest
+    container_name: gateway-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - discovery
+      - userAuthentification
+    environment:
+      - DISCOVERY_URL=http://discovery:8761/eureka
+      - AUTH_SERVICE_URL=http://userAuthentification:9898
+    networks:
+      - app-network
+
+  discovery:
+    image: salmachamam/my-discovery-image:latest
+    container_name: discovery-service
+    ports:
+      - "8761:8761"
+    networks:
+      - app-network
+    environment:
+      - EUREKA_INSTANCE_HOSTNAME=discovery
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka
+
+  userAuthentification:
+    image: salmachamam/userauthentification-image:latest
+    container_name: userauth-service
+    ports:
+      - "9898:9898"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
+  postgres:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
