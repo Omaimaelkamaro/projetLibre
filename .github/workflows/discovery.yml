@@ -31,9 +31,9 @@ jobs:
         run: ls -al ./discovery/target  # List the files in the target directory to verify JAR creation
 
       - name: Build Docker Image for discovery
-        run: docker build -t my-docker-image-name:latest -f ./discovery/Dockerfile ./discovery  # Specify full paths
-
-
+        working-directory: ./discovery  # Go to the GateWay folder
+        run: docker build -t my-docker-image-name:latest .
+        
       - name: Push Docker Image
         run: docker push my-docker-image-name:latest  # Push the image to Docker Hub (or your registry)
         env:
