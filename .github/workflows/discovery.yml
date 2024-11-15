@@ -31,8 +31,8 @@ jobs:
         run: ls -al ./discovery/target  # List the files in the target directory to verify JAR creation
 
       - name: Build Docker Image for discovery
-        working-directory: ./discovery  # Go to the discovery folder
-        run: docker build -t my-docker-image-name:latest -f ./discovery/Dockerfile ./discovery  # Specify Dockerfile location and build context
+        run: docker build -t my-docker-image-name:latest -f ./discovery/Dockerfile ./discovery  # Specify full paths
+
 
       - name: Push Docker Image
         run: docker push my-docker-image-name:latest  # Push the image to Docker Hub (or your registry)
