@@ -6,6 +6,10 @@ spring:
           uri: lb://userAuthentification
           predicates:
             - Path=/auth/**
+        - id: Adresse
+          uri: lb://Adresse
+          predicates:
+            - Path=/api/adresses/**
 
   application:
     name: GATEWAY
