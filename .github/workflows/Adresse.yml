@@ -1,4 +1,4 @@
-name: AdresseCI/CD
+name: Adresse CI/CD
 
 on:
   push:
