@@ -13,5 +13,3 @@ EXPOSE 5000
 
 # Définir la commande pour exécuter le fichier JAR
 ENTRYPOINT ["java", "-jar", "/app/Laboratoire-image.jar"]
-
-
