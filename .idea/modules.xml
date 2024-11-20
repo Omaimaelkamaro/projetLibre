@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/database/database.iml" filepath="$PROJECT_DIR$/database/database.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projetLibre.iml" filepath="$PROJECT_DIR$/.idea/projetLibre.iml" />
     </modules>
   </component>
