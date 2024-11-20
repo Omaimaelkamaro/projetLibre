@@ -29,6 +29,8 @@ spring:
         serviceUrl:
           defaultZone: http://localhost:8761/eureka/  # URL d'accès à votre serveur Eureka
       instance:
+        lease-renewal-interval-in-seconds: 30
+        lease-expiration-duration-in-seconds: 90
         metadata-map:
           instanceId: ${spring.application.name}:${server.port}  # ID d'instance unique pour chaque application enregistrée
         prefer-ip-address: true  # Préférence pour l'IP dans le registre Eureka

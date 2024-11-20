@@ -17,13 +17,20 @@ public class User {
     private String email;
     private String password;
     private boolean isActive;
+    private String profession;
+    private String numTel;
+    private String signature;
+    public enum Role {
+        ADMIN,
+        USER,
 
+    }
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles;
-
+    @Enumerated(EnumType.STRING) // Stocke les noms des rôles comme des chaînes dans la base de données
+    private Set<Role> roles;
     public User() {}
 
-    public User(String username, String email, String password, boolean isActive, Set<String> roles) {
+    public User(String username, String email, String password, boolean isActive, Set<Role> roles) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -31,7 +38,18 @@ public class User {
         this.roles = roles;
     }
 
-    // Getters et setters
+    public User(String email, Long id, boolean isActive, String numTel, String password, String profession, Set<Role> roles, String signature, String username) {
+        this.email = email;
+        this.id = id;
+        this.isActive = isActive;
+        this.numTel = numTel;
+        this.password = password;
+        this.profession = profession;
+        this.roles = roles;
+        this.signature = signature;
+        this.username = username;
+    }
+// Getters et setters
 
     public Long getId() {
         return id;
@@ -73,12 +91,36 @@ public class User {
         isActive = active;
     }
 
-    public Set<String> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getNumTel() {
+        return numTel;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 }
 
