@@ -68,7 +68,7 @@ jobs:
         run: ls -al ./Laboratoire/target
 
       - name: Build Docker Image for userauthentification
-        working-directory: ./laboratoire
+        working-directory: ./Laboratoire
         run: docker build -t salmachamam/laboratoire-image:latest .
 
       - name: Push Docker Image
