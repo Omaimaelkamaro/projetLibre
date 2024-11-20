@@ -1,4 +1,6 @@
-package com.example.dto;
+package com.example.userAuthentification.dto;
+
+import com.example.userAuthentification.entity.User;
 
 public class UtilisateurDto {
 	private String email;           // Unique identifier
@@ -6,7 +8,7 @@ public class UtilisateurDto {
 	private String profession;       // Profession
 	private String numTel;          // Phone number
 	private String signature;        // Signature (could be a base64 string)
-	private String role;            // User role
+	private User.Role role;          // User role
 	private Long laboratoireId;      // Assuming you want to send the ID of the Laboratoire
 
 	// Getters and Setters
@@ -50,16 +52,16 @@ public class UtilisateurDto {
 		this.signature = signature;
 	}
 
-	public String getRole() {
-		return role;
+	public Long getLaboratoireId() {
+		return laboratoireId;
 	}
 
-	public void setRole(String role) {
+	public void setRole(User.Role role) {
 		this.role = role;
 	}
 
-	public Long getLaboratoireId() {
-		return laboratoireId;
+	public User.Role getRole() {
+		return role;
 	}
 
 	public void setLaboratoireId(Long laboratoireId) {

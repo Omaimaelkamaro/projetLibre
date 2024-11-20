@@ -10,7 +10,15 @@
         <option value="$PROJECT_DIR$/user/pom.xml" />
         <option value="$PROJECT_DIR$/userAuthentification/pom.xml" />
         <option value="$PROJECT_DIR$/utilisateur/pom.xml" />
+        <option value="$USER_HOME$/Documents/Adresse/Adresse/pom.xml" />
+        <option value="$PROJECT_DIR$/Adresse/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$USER_HOME$/Documents/Adresse/Adresse/pom.xml" />
+        <option value="$PROJECT_DIR$/utilisateur/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
