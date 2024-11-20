@@ -65,7 +65,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: List files in target directory
-        run: ls -al ./userAuthentification/target
+        run: ls -al ./Adresse/target
 
       - name: Build Docker Image for adresse
         working-directory: ./Adresse
