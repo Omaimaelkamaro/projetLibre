@@ -24,6 +24,9 @@ public class UserService {
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
     public String save(User user) {
         userRepository.save(user);
@@ -36,9 +39,7 @@ public class UserService {
 
     }
 
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+
     public void validateToken(String token) {
         jwtService.validateToken(token);
     }
