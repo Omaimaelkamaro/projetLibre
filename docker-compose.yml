@@ -7,9 +7,11 @@ services:
     depends_on:
       - discovery
       - userAuthentification
+      - Adresse
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
       - AUTH_SERVICE_URL=http://userAuthentification:9898
+      - ADRESSE_SERVICE_URL=http://Adresse:8010
     networks:
       - app-network
 
@@ -30,7 +32,7 @@ services:
     ports:
       - "9898:9898"
     depends_on:
-      - postgres
+      - postgres_auth
     networks:
       - app-network
     environment:
@@ -38,7 +40,21 @@ services:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-  postgres:
+adresse:
+    image: salmachamam/adresse-image:latest
+    container_name: adresse-service
+    ports:
+      - "8010:8010"
+    depends_on:
+      - postgres_adresse
+    networks:
+      - app-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_adresse}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
+  postgres_auth:
     image: postgres
     container_name: postgres-db
     ports:
@@ -50,10 +66,31 @@ services:
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_auth_data:/var/lib/postgresql/data
+      
+ postgres_adresse:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_adresse}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      
+    volumes:
+      - postgres_adresse_data:/var/lib/postgresql/data
+
+
+
+
+
 
 volumes:
-  postgres_data:
+  postgres_auth_data:
+  postgres_adresse_data:
 
 networks:
   app-network:

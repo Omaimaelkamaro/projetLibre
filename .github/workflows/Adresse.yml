@@ -1,4 +1,4 @@
-name: AdresseCI/CD
+name: Adresse CI/CD
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           --health-timeout=5s
           --health-retries=5
         env:
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB_adresse }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USERNAME }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
@@ -53,7 +53,7 @@ jobs:
       - name: Build with Maven
         working-directory: ./Adresse
         env:
-          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/${{ secrets.POSTGRES_DB }}
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/${{ secrets.POSTGRES_DB_adresse }}
           SPRING_DATASOURCE_USERNAME: ${{ secrets.POSTGRES_USERNAME }}
           SPRING_DATASOURCE_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         run: ./mvnw -B package
@@ -65,7 +65,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: List files in target directory
-        run: ls -al ./userAuthentification/target
+        run: ls -al ./Adresse/target
 
       - name: Build Docker Image for adresse
         working-directory: ./Adresse
