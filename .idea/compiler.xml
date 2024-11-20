@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Adresse" />
         <module name="config-server" />
+        <module name="Laboratoire" />
         <module name="userAuthentification" />
         <module name="GateWay" />
         <module name="discovery" />

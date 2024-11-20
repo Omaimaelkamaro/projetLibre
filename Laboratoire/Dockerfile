@@ -5,11 +5,13 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copier le fichier JAR construit par Maven dans le conteneur
-COPY ./target/laboratoire-0.0.1-SNAPSHOT.jar /app/laboratoire-image.jar
+COPY ./target/Laboratoire-0.0.1-SNAPSHOT.jar /app/Laboratoire-image.jar
 
 
 # Exposer le port que le microservice utilisera
 EXPOSE 5000
 
 # Définir la commande pour exécuter le fichier JAR
-ENTRYPOINT ["java", "-jar", "/app/laboratoire-image.jar"]
+ENTRYPOINT ["java", "-jar", "/app/Laboratoire-image.jar"]
+
+
