@@ -7,11 +7,11 @@ services:
     depends_on:
       - discovery
       - userAuthentification
-      - Adresse
+      - adresse
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
       - AUTH_SERVICE_URL=http://userAuthentification:9898
-      - ADRESSE_SERVICE_URL=http://Adresse:8010
+      - ADRESSE_SERVICE_URL=http://adresse:8010
     networks:
       - app-network
 
@@ -36,11 +36,11 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_auth:5432/${POSTGRES_DB}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-adresse:
+  adresse:
     image: salmachamam/adresse-image:latest
     container_name: adresse-service
     ports:
@@ -50,7 +50,7 @@ adresse:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_adresse}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_adresse:5432/${POSTGRES_DB_adresse}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
@@ -58,7 +58,7 @@ adresse:
     image: postgres
     container_name: postgres-db
     ports:
-      - "5432:5432"
+      - "5433:5432"  # Changed the external port to 5433 to avoid conflict
     networks:
       - app-network
     environment:
@@ -67,26 +67,20 @@ adresse:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_auth_data:/var/lib/postgresql/data
-      
- postgres_adresse:
+
+  postgres_adresse:
     image: postgres
-    container_name: postgres-db
+    container_name: postgres-db-1
     ports:
-      - "5432:5432"
+      - "5434:5432"  # Changed the external port to 5434 to avoid conflict
     networks:
       - app-network
     environment:
       POSTGRES_DB: ${POSTGRES_DB_adresse}
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      
     volumes:
       - postgres_adresse_data:/var/lib/postgresql/data
-
-
-
-
-
 
 volumes:
   postgres_auth_data:

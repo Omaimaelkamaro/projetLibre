@@ -7,7 +7,6 @@ WORKDIR /app
 # Copier le fichier JAR construit par Maven dans le conteneur
 COPY ./target/Laboratoire-0.0.1-SNAPSHOT.jar /app/Laboratoire-image.jar
 
-
 # Exposer le port que le microservice utilisera
 EXPOSE 5000
 
