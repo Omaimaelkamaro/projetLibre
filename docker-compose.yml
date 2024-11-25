@@ -73,7 +73,7 @@ services:
     image: postgres
     container_name: postgres-db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - app-network
     environment:
@@ -87,7 +87,7 @@ services:
     image: postgres
     container_name: postgres-labo-db
     ports:
-      - "5434:5432" # Use a unique port for this service
+      - "5435:5432" # Use a unique port for this service
     networks:
       - app-network
     environment:
@@ -102,7 +102,7 @@ services:
      image: postgres
      container_name: postgres-db
      ports:
-      - "5432:5432"
+      - "5434:5432"
      networks:
       - app-network
      environment:
