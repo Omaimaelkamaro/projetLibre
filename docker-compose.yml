@@ -7,7 +7,8 @@ services:
     depends_on:
       - discovery
       - userAuthentification
-      - Adresse
+      - adresse
+      - Laboratoire
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
       - AUTH_SERVICE_URL=http://userAuthentification:9898
@@ -40,7 +41,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-adresse:
+  adresse:
     image: salmachamam/adresse-image:latest
     container_name: adresse-service
     ports:
@@ -54,7 +55,7 @@ adresse:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-        Laboratoire:
+  Laboratoire:
     image: salmachamam/laboratoire-image:latest
     container_name: Laboratoire-service
     ports:
@@ -72,7 +73,7 @@ adresse:
     image: postgres
     container_name: postgres-db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - app-network
     environment:
@@ -86,7 +87,7 @@ adresse:
     image: postgres
     container_name: postgres-labo-db
     ports:
-      - "5434:5432" # Use a unique port for this service
+      - "5435:5432" # Use a unique port for this service
     networks:
       - app-network
     environment:
@@ -95,31 +96,27 @@ adresse:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_labo_data:/var/lib/postgresql/data
-      
-      
- postgres_adresse:
+
+
+  postgres_adresse:
     image: postgres
-    container_name: postgres-db
+    container_name: postgres-db-1
     ports:
-      - "5432:5432"
+      - "5434:5432"  # Changed the external port to 5434 to avoid conflict
     networks:
       - app-network
     environment:
       POSTGRES_DB: ${POSTGRES_DB_adresse}
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      
     volumes:
       - postgres_adresse_data:/var/lib/postgresql/data
-
-
-
-
 
 
 volumes:
   postgres_auth_data:
   postgres_adresse_data:
+  postgres_labo_data:
 
 networks:
   app-network:
