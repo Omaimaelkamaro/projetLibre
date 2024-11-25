@@ -54,6 +54,20 @@ adresse:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
+        Laboratoire:
+    image: salmachamam/laboratoire-image:latest
+    container_name: Laboratoire-service
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres_labo
+    networks:
+      - app-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_LABO}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
   postgres_auth:
     image: postgres
     container_name: postgres-db
@@ -67,6 +81,21 @@ adresse:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_auth_data:/var/lib/postgresql/data
+
+  postgres_labo:
+    image: postgres
+    container_name: postgres-labo-db
+    ports:
+      - "5434:5432" # Use a unique port for this service
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_LABO}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_labo_data:/var/lib/postgresql/data
+      
       
  postgres_adresse:
     image: postgres
