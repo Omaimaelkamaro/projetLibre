@@ -7,11 +7,11 @@ services:
     depends_on:
       - discovery
       - userAuthentification
-      - adresse
+      - Adresse
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
       - AUTH_SERVICE_URL=http://userAuthentification:9898
-      - ADRESSE_SERVICE_URL=http://adresse:8010
+      - ADRESSE_SERVICE_URL=http://Adresse:8010
     networks:
       - app-network
 
@@ -36,11 +36,11 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_auth:5432/${POSTGRES_DB}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-  adresse:
+adresse:
     image: salmachamam/adresse-image:latest
     container_name: adresse-service
     ports:
@@ -50,7 +50,21 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_adresse:5432/${POSTGRES_DB_adresse}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_adresse}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
+        Laboratoire:
+    image: salmachamam/laboratoire-image:latest
+    container_name: Laboratoire-service
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres_labo
+    networks:
+      - app-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_LABO}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
@@ -58,7 +72,7 @@ services:
     image: postgres
     container_name: postgres-db
     ports:
-      - "5433:5432"  # Changed the external port to 5433 to avoid conflict
+      - "5432:5432"
     networks:
       - app-network
     environment:
@@ -68,19 +82,40 @@ services:
     volumes:
       - postgres_auth_data:/var/lib/postgresql/data
 
-  postgres_adresse:
+  postgres_labo:
     image: postgres
-    container_name: postgres-db-1
+    container_name: postgres-labo-db
     ports:
-      - "5434:5432"  # Changed the external port to 5434 to avoid conflict
+      - "5434:5432" # Use a unique port for this service
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_LABO}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_labo_data:/var/lib/postgresql/data
+      
+      
+ postgres_adresse:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
     networks:
       - app-network
     environment:
       POSTGRES_DB: ${POSTGRES_DB_adresse}
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      
     volumes:
       - postgres_adresse_data:/var/lib/postgresql/data
+
+
+
+
+
 
 volumes:
   postgres_auth_data:
