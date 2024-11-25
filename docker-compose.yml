@@ -7,7 +7,7 @@ services:
     depends_on:
       - discovery
       - userAuthentification
-      - Laboratoire
+      - Adresse
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
       - AUTH_SERVICE_URL=http://userAuthentification:9898
@@ -40,7 +40,21 @@ services:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-  Laboratoire:
+adresse:
+    image: salmachamam/adresse-image:latest
+    container_name: adresse-service
+    ports:
+      - "8010:8010"
+    depends_on:
+      - postgres_adresse
+    networks:
+      - app-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_adresse}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+
+        Laboratoire:
     image: salmachamam/laboratoire-image:latest
     container_name: Laboratoire-service
     ports:
@@ -54,29 +68,15 @@ services:
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
-  adresse:
-   image: salmachamam/adresse-image:latest
-   container_name: adresse-service
-   ports:
-    - "8010:8010"
-   depends_on:
-    - postgres_adresse
-   networks:
-    - app-network
-   environment:
-    - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_adresse}
-    - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
-    - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
-
   postgres_auth:
     image: postgres
-    container_name: postgres-auth-db
+    container_name: postgres-db
     ports:
       - "5432:5432"
     networks:
       - app-network
     environment:
-      POSTGRES_DB: ${POSTGRES_DB_AUTH}
+      POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
@@ -95,8 +95,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_labo_data:/var/lib/postgresql/data
-
-  postgres_adresse:
+      
+      
+ postgres_adresse:
     image: postgres
     container_name: postgres-db
     ports:
@@ -107,13 +108,17 @@ services:
       POSTGRES_DB: ${POSTGRES_DB_adresse}
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
+      
     volumes:
       - postgres_adresse_data:/var/lib/postgresql/data
 
+
+
+
+
+
 volumes:
   postgres_auth_data:
-  postgres_labo_data:
   postgres_adresse_data:
 
 networks:
