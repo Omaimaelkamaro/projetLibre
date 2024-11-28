@@ -67,8 +67,8 @@ jobs:
       - name: List files in target directory
         run: ls -al ./Epreuve/target
 
-      - name: Build Docker Image for Laboratoire
-        working-directory: ./Laboratoire
+      - name: Build Docker Image for Epreuve
+        working-directory: ./Epreuve
         run: docker build -t salmachamam/epreuve-image:latest .
 
       - name: Push Docker Image
