@@ -10,11 +10,14 @@ spring:
           uri: lb://Adresse
           predicates:
             - Path=/api/adresses/**
-
         - id: Laboratoire
           uri: lb://Laboratoire
           predicates:
-            - Path=//api/laboratoires/**
+            - Path=/api/laboratoires/**
+        - id: Epreuve
+          uri: lb://epreuve
+          predicates:
+            - Path=/api/epreuve/**
 
   application:
     name: GATEWAY

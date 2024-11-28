@@ -7,12 +7,12 @@ services:
     depends_on:
       - discovery
       - userAuthentification
-      - Adresse
+      - adresse
       - Laboratoire
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
-      - AUTH_SERVICE_URL=http://userAuthentification:9898
-      - ADRESSE_SERVICE_URL=http://Adresse:8010
+      - AUTH_SERVICE_URL=http://userauth-service:9898
+      - ADRESSE_SERVICE_URL=http://adresse-service:8010
     networks:
       - app-network
 
@@ -37,7 +37,7 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-auth-db:5432/${POSTGRES_DB}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
@@ -51,13 +51,13 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_adresse}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-adresse-db:5432/${POSTGRES_DB_adresse}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
   Laboratoire:
     image: salmachamam/laboratoire-image:latest
-    container_name: Laboratoire-service
+    container_name: laboratoire-service
     ports:
       - "5000:5000"
     depends_on:
@@ -65,13 +65,13 @@ services:
     networks:
       - app-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/${POSTGRES_DB_LABO}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-labo-db:5432/${POSTGRES_DB_LABO}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
   postgres_auth:
     image: postgres
-    container_name: postgres-db
+    container_name: postgres-auth-db
     ports:
       - "5433:5432"
     networks:
@@ -87,7 +87,7 @@ services:
     image: postgres
     container_name: postgres-labo-db
     ports:
-      - "5435:5432" # Use a unique port for this service
+      - "5435:5432"
     networks:
       - app-network
     environment:
@@ -96,27 +96,20 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_labo_data:/var/lib/postgresql/data
-      
-      
+
   postgres_adresse:
-     image: postgres
-     container_name: postgres-db
-     ports:
+    image: postgres
+    container_name: postgres-adresse-db
+    ports:
       - "5434:5432"
-     networks:
+    networks:
       - app-network
-     environment:
+    environment:
       POSTGRES_DB: ${POSTGRES_DB_adresse}
       POSTGRES_USER: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      
-     volumes:
+    volumes:
       - postgres_adresse_data:/var/lib/postgresql/data
-
-
-
-
-
 
 volumes:
   postgres_auth_data:
