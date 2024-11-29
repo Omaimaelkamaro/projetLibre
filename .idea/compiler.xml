@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Adresse" />
-        <module name="Analyse" />
         <module name="config-server" />
         <module name="Laboratoire" />
         <module name="userAuthentification" />
@@ -24,7 +23,6 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Adresse" options="-parameters" />
       <module name="Adresse (1)" options="-parameters" />
-      <module name="Analyse" options="-parameters" />
       <module name="GateWay" options="-parameters" />
       <module name="Laboratoire" options="-parameters" />
       <module name="config-server" options="-parameters" />
