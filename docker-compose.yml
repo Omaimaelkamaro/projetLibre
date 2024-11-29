@@ -9,6 +9,7 @@ services:
       - userAuthentification
       - adresse
       - Laboratoire
+      - Epreuve
     environment:
       - DISCOVERY_URL=http://discovery:8761/eureka
       - AUTH_SERVICE_URL=http://userauth-service:9898
@@ -68,6 +69,19 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-labo-db:5432/${POSTGRES_DB_LABO}
       - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+  Epreuve:
+    image: salmachamam/epreuve-image:latest
+    container_name: epreuve-service
+    ports:
+      - "7000:7000"
+    depends_on:
+      - postgres_epreuve
+    networks:
+      - app-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-labo-db:5432/${POSTGRES_DB_EPREUVE}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
 
   postgres_auth:
     image: postgres
@@ -111,10 +125,24 @@ services:
     volumes:
       - postgres_adresse_data:/var/lib/postgresql/data
 
+  postgres_epreuve:
+    image: postgres
+    container_name: postgres-epreuve-db
+    ports:
+      - "5436:5432"
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_EPREUVE}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_epreuve_data:/var/lib/postgresql/data
 volumes:
   postgres_auth_data:
   postgres_adresse_data:
   postgres_labo_data:
+  postgres_epreuve_data:
 
 networks:
   app-network:
