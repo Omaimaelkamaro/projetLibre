@@ -6,16 +6,19 @@ spring:
           uri: lb://userAuthentification
           predicates:
             - Path=/auth/**
+            # Removed the empty predicate
         - id: Adresse
           uri: lb://Adresse
           predicates:
             - Path=/api/adresses/**
-
         - id: Laboratoire
           uri: lb://Laboratoire
           predicates:
-            - Path=//api/laboratoires/**
-
+            - Path=/api/laboratoires/**
+        - id: Analyse
+          uri: lb://Analyse
+          predicates:
+            - Path=/api/analyses/**
   application:
     name: GATEWAY
 
