@@ -7,22 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Adresse" />
+        <module name="Analyse" />
         <module name="config-server" />
         <module name="Laboratoire" />
         <module name="userAuthentification" />
+        <module name="Epreuve" />
         <module name="GateWay" />
         <module name="discovery" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Adresse (1)" target="17" />
       <module name="utilisateur" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Adresse" options="-parameters" />
-      <module name="Adresse (1)" options="-parameters" />
+      <module name="Analyse" options="-parameters" />
+      <module name="Epreuve" options="-parameters" />
       <module name="GateWay" options="-parameters" />
       <module name="Laboratoire" options="-parameters" />
       <module name="config-server" options="-parameters" />
