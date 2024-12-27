@@ -7,12 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Adresse" />
+        <module name="contactLaboratoire" />
         <module name="config-server" />
         <module name="Laboratoire" />
         <module name="userAuthentification" />
         <module name="Epreuve" />
         <module name="GateWay" />
         <module name="discovery" />
+        <module name="Dossier" />
+        <module name="examen" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,11 +27,14 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Adresse" options="-parameters" />
       <module name="Adresse (1)" options="-parameters" />
+      <module name="Dossier" options="-parameters" />
       <module name="Epreuve" options="-parameters" />
       <module name="GateWay" options="-parameters" />
       <module name="Laboratoire" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="contactLaboratoire" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="examen" options="-parameters" />
       <module name="userAuthentification" options="-parameters" />
       <module name="utilisateur" options="-parameters" />
     </option>

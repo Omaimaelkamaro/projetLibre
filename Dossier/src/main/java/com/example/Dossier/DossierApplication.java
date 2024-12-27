@@ -1,19 +1,15 @@
-package com.example.Laboratoire;
+package com.example.Dossier;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
-
-
-@EnableDiscoveryClient
-@EnableFeignClients
 @SpringBootApplication
-public class LaboratoireApplication {
+@EnableDiscoveryClient
+public class DossierApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LaboratoireApplication.class, args);
+		SpringApplication.run(DossierApplication.class, args);
 	}
 
 }

@@ -13,11 +13,24 @@ spring:
         - id: Laboratoire
           uri: lb://Laboratoire
           predicates:
-            - Path=/api/laboratoires/**
+            - Path=/api/laboratoire/**
+        - id: ContactLaboratoire
+          uri: lb://contact
+          predicates:
+            - Path=/api/contacts/**
         - id: Epreuve
           uri: lb://epreuve
           predicates:
             - Path=/api/epreuve/**
+        - id: Dossier
+          uri: lb://dossier
+          predicates:
+            - Path=/api/patients/**
+            - Path=/api/dossiers/**
+        - id: examen
+          uri: lb://examen
+          predicates:
+            - Path=/api/exams/**
 
   application:
     name: GATEWAY

@@ -1,34 +1,14 @@
-package com.example.Laboratoire.entity;
+package com.example.contactLaboratoire.client;
 
-
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
 import java.util.Date;
 
-@Entity
-public class Laboratoire {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class LaboratoireDTO {
     private Long id;
-
-    @Column(nullable = false)
     private String nom;
-
     private String logo;
-
-    @Column(nullable = false, unique = true)
     private String nrc;
-
     private boolean active;
-
-    @Column(nullable = false)
     private Date dateActivation;
-
 
     public Long getId() {
         return id;

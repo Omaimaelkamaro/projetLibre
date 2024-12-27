@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EntityScan("com.example.userAuthentification.entity")
 @EnableJpaRepositories("com.example.userAuthentification.repository")
-@ComponentScan(basePackages = "com.example.userAuthentification")
+
 @SpringBootApplication
 public class UserAuthentificationApplication {
 
