@@ -22,6 +22,7 @@ spring:
           uri: lb://epreuve
           predicates:
             - Path=/api/epreuve/**
+<<<<<<< HEAD
         - id: Dossier
           uri: lb://dossier
           predicates:
@@ -32,6 +33,12 @@ spring:
           predicates:
             - Path=/api/exams/**
 
+=======
+        - id: Analyse
+          uri: lb://Analyse
+          predicates:
+            - Path=/api/analyses/**
+>>>>>>> 85782e74fa9d23fb71b5508240158bfa29db88b1
   application:
     name: GATEWAY
 
@@ -42,3 +49,9 @@ eureka:
 
 server:
   port: 8081
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
