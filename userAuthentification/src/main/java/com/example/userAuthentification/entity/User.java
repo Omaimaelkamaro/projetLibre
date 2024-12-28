@@ -20,6 +20,8 @@ public class User {
     private String profession;
     private String numTel;
     private String signature;
+
+     private long fkIdLaboratoire ;
     public enum Role {
         ADMIN,
         USER,
@@ -30,15 +32,16 @@ public class User {
     private Set<Role> roles;
     public User() {}
 
-    public User(String username, String email, String password, boolean isActive, Set<Role> roles) {
+    public User(String username, String email, String password, boolean isActive, Set<Role> roles,long fkIdLaboratoire ) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.isActive = isActive;
         this.roles = roles;
+        this.fkIdLaboratoire= fkIdLaboratoire;
     }
 
-    public User(String email, Long id, boolean isActive, String numTel, String password, String profession, Set<Role> roles, String signature, String username) {
+    public User(String email, Long id, boolean isActive, String numTel, String password, String profession, Set<Role> roles, String signature, String username,Long fkIdLaboratoire) {
         this.email = email;
         this.id = id;
         this.isActive = isActive;
@@ -48,6 +51,7 @@ public class User {
         this.roles = roles;
         this.signature = signature;
         this.username = username;
+        this.fkIdLaboratoire = fkIdLaboratoire;
     }
 // Getters et setters
 
@@ -57,6 +61,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getfkIdLaboratoire() {
+        return fkIdLaboratoire;
+    }
+
+    public void setfkIdLaboratoire(Long fkIdLaboratoire) {
+        this.fkIdLaboratoire = fkIdLaboratoire;
     }
 
     public String getUsername() {

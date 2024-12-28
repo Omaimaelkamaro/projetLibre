@@ -1,8 +1,10 @@
 package com.example.Epreuve.controller;
 
+import com.example.Epreuve.client.AnalyseDto;
 import com.example.Epreuve.entity.Epreuve;
 
 import com.example.Epreuve.service.EpreuveService;
+import com.example.Epreuve.serviceClient.AnalyseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +17,13 @@ import java.util.List;
 public class EpreuveController {
 
     private final EpreuveService epreuveService;
+    private final AnalyseService analyseService;
 
     @Autowired
-    public EpreuveController(EpreuveService epreuveService) {
+    public EpreuveController(EpreuveService epreuveService, AnalyseService analyseService) {
+
         this.epreuveService = epreuveService;
+        this.analyseService = analyseService;
     }
 
     // Créer une épreuve
@@ -55,6 +60,10 @@ public class EpreuveController {
         return epreuveService.getEpreuveById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+    @GetMapping("/analyses/{id}")
+    public AnalyseDto getAnalyseById(@PathVariable Long id) {
+        return analyseService.getAnalyseDetails(id);
     }
 }
 

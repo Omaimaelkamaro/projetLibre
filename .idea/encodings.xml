@@ -2,23 +2,17 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Adresse/src/main/java" charset="UTF-8" />
-<<<<<<< HEAD
-    <file url="file://$PROJECT_DIR$/Dossier/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Dossier/src/main/resources" charset="UTF-8" />
-=======
     <file url="file://$PROJECT_DIR$/Analyse/src/main/java" charset="UTF-8" />
->>>>>>> 85782e74fa9d23fb71b5508240158bfa29db88b1
+    <file url="file://$PROJECT_DIR$/Analyse/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Dossier/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Epreuve/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/GateWay/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Laboratoire/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/contactLaboratoire/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/contactLaboratoire/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/examen/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/examen/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notification/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/userAuthentification/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/utilisateur/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/utilisateur/src/main/java/java" charset="UTF-8" />
   </component>
 </project>

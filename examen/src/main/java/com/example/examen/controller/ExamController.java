@@ -2,8 +2,12 @@ package com.example.examen.controller;
 
 
 
+import com.example.examen.client.DossierDTO;
+import com.example.examen.client.EpreuveDTO;
 import com.example.examen.entity.Exam;
 import com.example.examen.service.ExamService;
+import com.example.examen.serviceClient.DossierService;
+import com.example.examen.serviceClient.EpreuveService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +20,16 @@ import java.util.NoSuchElementException;
 public class ExamController {
 
     private final ExamService examService;
+    private final EpreuveService epreuveService;
 
-    public ExamController(ExamService examService) {
+    private final DossierService dossierService;
+
+
+    public ExamController(ExamService examService,EpreuveService epreuveService,DossierService dossierService) {
+
         this.examService = examService;
+        this.epreuveService = epreuveService;
+        this.dossierService = dossierService;
     }
 
     @PostMapping
@@ -56,5 +67,15 @@ public class ExamController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Erreur lors de la génération du rapport : " + e.getMessage());
         }
+    }
+
+    @GetMapping("/epreuves/{id}")
+    public EpreuveDTO getEpreuveById(@PathVariable Long id) {
+        return epreuveService.getEpreuveDetails(id);
+    }
+
+    @GetMapping("/dossiers/{id}")
+    public DossierDTO getDossierByNumDossier(@PathVariable Long id) {
+        return dossierService.getDossierDetails(id);
     }
 }

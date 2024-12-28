@@ -11,25 +11,23 @@ public class Dossier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long numDossier;
 
-    public boolean isArchivé() {
-        return archivé;
-    }
-
-    public void setArchivé(boolean archivé) {
-        this.archivé = archivé;
-    }
 
     private String fkEmailUtilisateur; // Email de l'utilisateur (référence externe)
-    private Long fkIdPatient;          // ID du patient (référence externe)
+
+
+    private Long fkIdPatient; // ID du patient (référence externe)
+
+     // Précise le type de date (DATE, TIME ou TIMESTAMP)
     private Date date;
 
-    @Column(name = "archivé")
-    private boolean archivé = false;
 
-    @ManyToOne
+    private Boolean archivé = false;
+
+    @ManyToOne()
+    @JoinColumn()
     private Patient patient;
 
-
+    // Constructeurs
     public Dossier() {}
 
     public Dossier(String fkEmailUtilisateur, Long fkIdPatient, Date date) {
@@ -69,5 +67,21 @@ public class Dossier {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Boolean getArchivé() {
+        return archivé;
+    }
+
+    public void setArchivé(Boolean archivé) {
+        this.archivé = archivé;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

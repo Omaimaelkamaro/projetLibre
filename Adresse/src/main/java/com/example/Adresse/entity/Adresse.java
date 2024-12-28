@@ -49,9 +49,9 @@ public class Adresse {
     public void setCommune(String commune) {
         this.commune = commune;
     }
-    public Adresse(String numVoie, String nomVoie, String codePostal, String ville, String commune) {
+    public Adresse(String nomVoie, String codePostal, String ville, String commune) {
         super();
-        this.numVoie = numVoie;
+
         this.nomVoie = nomVoie;
         this.codePostal = codePostal;
         this.ville = ville;

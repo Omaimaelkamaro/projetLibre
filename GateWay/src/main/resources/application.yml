@@ -22,7 +22,7 @@ spring:
           uri: lb://epreuve
           predicates:
             - Path=/api/epreuve/**
-<<<<<<< HEAD
+
         - id: Dossier
           uri: lb://dossier
           predicates:
@@ -33,12 +33,17 @@ spring:
           predicates:
             - Path=/api/exams/**
 
-=======
+
         - id: Analyse
           uri: lb://Analyse
           predicates:
             - Path=/api/analyses/**
->>>>>>> 85782e74fa9d23fb71b5508240158bfa29db88b1
+
+        - id: Notification
+          uri: lb://notofication
+          predicates:
+            - Path=/api/notofications/**
+
   application:
     name: GATEWAY
 

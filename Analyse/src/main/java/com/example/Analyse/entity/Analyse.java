@@ -9,15 +9,10 @@ public class Analyse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "fkIdLaboratoire", nullable = false)
-//    private Laboratoire laboratoire;
 
     private String nom;
     private String description;
 
-//    @OneToMany(mappedBy = "analyse")
-//    private List<Epreuve> epreuves;
 
     public int getId() {
         return id;
@@ -27,12 +22,7 @@ public class Analyse {
         this.id = id;
     }
 
-////    public Laboratoire getLaboratoire() {
-//        return laboratoire;
-//    }
-
-//    public void setLaboratoire(Laboratoire laboratoire) {
-//        this.laboratoire = laboratoire;
+////
 //    }
 
     public String getNom() {

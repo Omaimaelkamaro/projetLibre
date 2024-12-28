@@ -13,17 +13,18 @@
         <option value="$USER_HOME$/Documents/Adresse/Adresse/pom.xml" />
         <option value="$PROJECT_DIR$/Adresse/pom.xml" />
         <option value="$PROJECT_DIR$/Laboratoire/pom.xml" />
-        <option value="$PROJECT_DIR$/Analyse/pom.xml" />
         <option value="$PROJECT_DIR$/Epreuve/pom.xml" />
         <option value="$PROJECT_DIR$/contactLaboratoire/pom.xml" />
         <option value="$PROJECT_DIR$/Dossier/pom.xml" />
         <option value="$PROJECT_DIR$/examen/pom.xml" />
+        <option value="$PROJECT_DIR$/Analyse/pom.xml" />
+        <option value="$PROJECT_DIR$/notification/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$USER_HOME$/Documents/Adresse/Adresse/pom.xml" />
         <option value="$PROJECT_DIR$/utilisateur/pom.xml" />
+        <option value="$USER_HOME$/Documents/Adresse/Adresse/pom.xml" />
       </set>
     </option>
   </component>

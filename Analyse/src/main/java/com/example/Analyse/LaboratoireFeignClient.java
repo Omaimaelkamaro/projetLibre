@@ -1,6 +1,6 @@
-package com.example.contactLaboratoire;
+package com.example.Analyse;
 
-import com.example.contactLaboratoire.client.LaboratoireDTO;
+import  com.example.Analyse.client.LaboratoireDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,4 +10,3 @@ public interface LaboratoireFeignClient {
     @GetMapping("/{id}")
     LaboratoireDTO getLaboratoireById(@PathVariable Long id);
 }
-

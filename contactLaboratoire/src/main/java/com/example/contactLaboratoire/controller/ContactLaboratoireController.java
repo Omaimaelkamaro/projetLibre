@@ -2,9 +2,11 @@ package com.example.contactLaboratoire.controller;
 
 
 
+import com.example.contactLaboratoire.client.AdresseDTO;
 import com.example.contactLaboratoire.client.LaboratoireDTO;
 import com.example.contactLaboratoire.entity.ContactLaboratoire;
 import com.example.contactLaboratoire.service.ContactLaboratoireService;
+import com.example.contactLaboratoire.serviceClient.AdresseService;
 import com.example.contactLaboratoire.serviceClient.LaboratoireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,14 +50,21 @@ public class ContactLaboratoireController {
     }
 
     private final LaboratoireService laboratoireService;
+    private final AdresseService adresseService;
 
     @Autowired
-    public ContactLaboratoireController(LaboratoireService laboratoireService) {
+    public ContactLaboratoireController(LaboratoireService laboratoireService,AdresseService adresseService) {
         this.laboratoireService = laboratoireService;
+        this.adresseService = adresseService;
     }
 
     @GetMapping("/laboratoires/{id}")
     public LaboratoireDTO getLaboratoireById(@PathVariable Long id) {
         return laboratoireService.getLaboratoireDetails(id);
+    }
+
+    @GetMapping("/adresses/{id}")
+    public AdresseDTO getAdresseById(@PathVariable Long id) {
+        return adresseService.getAdresseDetails(id);
     }
 }

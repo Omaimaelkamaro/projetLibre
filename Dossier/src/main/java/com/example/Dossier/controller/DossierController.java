@@ -1,6 +1,8 @@
 package com.example.Dossier.controller;
 
 
+import com.example.Dossier.ServiceClient.UserService;
+import com.example.Dossier.client.UserDTO;
 import com.example.Dossier.entity.Dossier;
 import com.example.Dossier.repository.DossierRepository;
 import com.example.Dossier.service.DossierService;
@@ -18,6 +20,7 @@ public class DossierController {
 
     @Autowired
     private DossierService dossierService;
+    private UserService userService;
     @Autowired
     private DossierRepository dossierRepository;
 
@@ -54,6 +57,7 @@ public class DossierController {
         dossierService.archiveOrDeleteDossier(id);
         return ResponseEntity.noContent().build();
     }
+
     @PutMapping("/{id}/archiver")
     public ResponseEntity<Dossier> archiverDossier(@PathVariable Long id) {
         Optional<Dossier> dossierOptional = dossierRepository.findById(id);
@@ -68,9 +72,19 @@ public class DossierController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
     @GetMapping("/archivés")
     public List<Dossier> getDossiersArchivés() {
         return dossierRepository.findByArchivé(true);
     }
 
+public DossierController(UserService userService){
+        this.userService =userService;
 }
+
+    @GetMapping("/auth/{id}")
+    public UserDTO getUserById(@PathVariable Long id) {
+        return userService.getUserDetails(id);
+    }
+}
+

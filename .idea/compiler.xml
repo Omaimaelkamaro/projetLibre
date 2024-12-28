@@ -6,14 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Adresse" />
-<<<<<<< HEAD
         <module name="contactLaboratoire" />
-=======
         <module name="Analyse" />
->>>>>>> 85782e74fa9d23fb71b5508240158bfa29db88b1
+        <module name="Adresse" />
         <module name="config-server" />
         <module name="Laboratoire" />
+        <module name="notification" />
         <module name="userAuthentification" />
         <module name="Epreuve" />
         <module name="GateWay" />
@@ -22,19 +20,12 @@
         <module name="examen" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="utilisateur" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Adresse" options="-parameters" />
-<<<<<<< HEAD
-      <module name="Adresse (1)" options="-parameters" />
-      <module name="Dossier" options="-parameters" />
-=======
       <module name="Analyse" options="-parameters" />
->>>>>>> 85782e74fa9d23fb71b5508240158bfa29db88b1
+      <module name="Dossier" options="-parameters" />
       <module name="Epreuve" options="-parameters" />
       <module name="GateWay" options="-parameters" />
       <module name="Laboratoire" options="-parameters" />
@@ -42,8 +33,8 @@
       <module name="contactLaboratoire" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="examen" options="-parameters" />
+      <module name="notification" options="-parameters" />
       <module name="userAuthentification" options="-parameters" />
-      <module name="utilisateur" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,10 +1,12 @@
 package com.example.userAuthentification.controller;
 
+import com.example.userAuthentification.client.LaboratoireDTO;
 import com.example.userAuthentification.dto.JwtAuthenticationResponse;
 import com.example.userAuthentification.dto.UtilisateurDto;
 import com.example.userAuthentification.entity.User;
 import com.example.userAuthentification.service.JwtTokenProvider;
 import com.example.userAuthentification.service.UserService;
+import com.example.userAuthentification.serviceClient.LaboratoireService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -77,5 +79,16 @@ public class AuthController {
     public ResponseEntity<Void> supprimerUtilisateur(@PathVariable Long id) {
         userService.supprimerUtilisateur(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    private final LaboratoireService laboratoireService;
+
+    @Autowired
+    public AuthController(LaboratoireService laboratoireService) {
+        this.laboratoireService = laboratoireService;
+    }
+
+    @GetMapping("/laboratoires/{id}")
+    public LaboratoireDTO getLaboratoireById(@PathVariable Long id) {
+        return laboratoireService.getLaboratoireDetails(id);
     }
 }
