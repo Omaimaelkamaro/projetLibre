@@ -70,6 +70,7 @@ public class UserService {
                 .orElse(null); // or throw an exception
     }
 
+
     public List<UtilisateurDto> obtenirTousLesUtilisateurs() {
         return userRepository.findAll().stream()
                 .map(this::mapToDto) // Call non-static mapToDto method

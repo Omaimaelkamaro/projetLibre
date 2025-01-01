@@ -1,9 +1,11 @@
 package com.example.notification.controller;
 
+import com.example.notification.client.UserDto;
 import com.example.notification.service.EmailService;
 
 import com.example.notification.dto.EmailRequest;
 
+import com.example.notification.serviceClient.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +16,8 @@ public class NotificationController {
 
     @Autowired
     private EmailService emailService;
+    private UserService userService;
 
-   /* @Autowired
-    private SmsService smsService;*/
 
     @PostMapping("/email")
     public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
@@ -29,5 +30,14 @@ public class NotificationController {
         smsService.sendSms(smsRequest.getTo(), smsRequest.getMessage());
         return ResponseEntity.ok("SMS sent successfully!");
     }*/
+   public NotificationController(UserService userService){
+       this.userService =userService;
+   }
+
+    @GetMapping("/auth/email/{email}")
+    public String sendNotification(@PathVariable String email) {
+        UserDto user = userService.getUserDetails(email);
+        return "Notification envoyée à : " + user.getUsername() + " (" + user.getEmail() + ")";
+    }
 }
 

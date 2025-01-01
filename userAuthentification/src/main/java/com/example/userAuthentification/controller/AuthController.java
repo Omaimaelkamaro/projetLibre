@@ -8,6 +8,7 @@ import com.example.userAuthentification.service.JwtTokenProvider;
 import com.example.userAuthentification.service.UserService;
 import com.example.userAuthentification.serviceClient.LaboratoireService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,6 +67,15 @@ public class AuthController {
                 new ResponseEntity<>(utilisateur, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    @GetMapping("/email/{email}")
+    public UtilisateurDto getUserByEmail(@PathVariable  String email) {
+        UtilisateurDto user = new UtilisateurDto();
+        user.setEmail(email);
+        user.setNomComplet(user.getNomComplet());
+
+        return user;
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<UtilisateurDto> mettreAJourUtilisateur(@PathVariable Long id, @Valid @RequestBody UtilisateurDto utilisateurDto) {
